@@ -1,4 +1,4 @@
-## leaflet-image
+## node-leaflet-image
 
 [![CircleCI](https://circleci.com/gh/mapbox/leaflet-image/tree/gh-pages.svg?style=svg)](https://circleci.com/gh/mapbox/leaflet-image/tree/gh-pages)
 
@@ -29,13 +29,13 @@ __For Leaflet >= 1.0.0__: You must set `renderer: L.canvas()` for any layer that
 
 ### Usage
 
-browserify
+npm
 
-    npm install --save leaflet-image
+    `npm install --save node-leaflet-image
 
-web
+yarn
 
-    curl -L https://unpkg.com/leaflet-image@latest/leaflet-image.js > leaflet-image.js
+    `yarn add node-leaflet-image`
 
 ### Example
 
