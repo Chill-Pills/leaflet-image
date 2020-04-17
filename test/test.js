@@ -5,14 +5,23 @@ var pixelmatch = require('pixelmatch');
 var fs = require('fs');
 var Pageres = require('pageres');
 
-['simple', 'circle-marker', 'osm', 'one-point-oh',
-    'style-layer', 'no-tiles', 'wms'].forEach(name => {
+[
+    'simple', 
+    'circle-marker', 
+    'osm', 
+    'one-point-oh',
+    'style-layer', 
+    'no-tiles', 
+    'wms'
+].forEach(name => {
     test(name, t => {
-        const pageres = new Pageres({ delay: 5 })
+        const pageres = new Pageres({
+                delay: 5
+            })
             .src(path.join(__dirname, 'pages/', name + '.html'), ['400x400'])
             .run()
             .then(res => {
-                res[0].pipe(concat(function(buf) {
+                res[0].pipe(concat(function (buf) {
                     if (process.env.UPDATE) {
                         fs.writeFileSync(path.join(__dirname, 'out', name + '.png'), buf);
                     }
