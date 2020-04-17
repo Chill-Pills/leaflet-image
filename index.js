@@ -38,6 +38,7 @@ module.exports = function leafletImage(map, callback) {
         if (firstCanvas) { layerQueue.defer(handlePathRoot, firstCanvas); }
     }
     map.eachLayer(drawMarkerLayer);
+    map.eachLayer(drawPopupLayer);
     layerQueue.awaitAll(layersDone);
 
     function drawTileLayer(l) {
@@ -50,11 +51,15 @@ module.exports = function leafletImage(map, callback) {
             layerQueue.defer(handleMarkerLayer, l);
         }
     }
+
+    function drawPopupLayer(l) {
+        if (l instanceof L.Popup) layerQueue.defer(handlePopupLayer, l);
+    }
     
     function drawEsriDynamicLayer(l) {
         if (!L.esri) return;
         
-        if (l instanceof L.esri.DynamicMapLayer) {                       
+        if (l instanceof L.esri.DynamicMapLayer) {
             layerQueue.defer(handleEsriDymamicLayer, l);
         }
     }
