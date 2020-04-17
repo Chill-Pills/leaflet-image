@@ -53,7 +53,7 @@ module.exports = function leafletImage(map, callback) {
     
     function drawEsriDynamicLayer(l) {
         if (!L.esri) return;
-       
+        
         if (l instanceof L.esri.DynamicMapLayer) {                       
             layerQueue.defer(handleEsriDymamicLayer, l);
         }
@@ -85,6 +85,8 @@ module.exports = function leafletImage(map, callback) {
             bounds = map.getPixelBounds(),
             zoom = map.getZoom(),
             tileSize = layer.options.tileSize;
+
+        ctx.globalAlpha = (layer.options && layer.options.opacity) ? layer.options.opacity : 1;
 
         if (zoom > layer.options.maxZoom ||
             zoom < layer.options.minZoom ||
